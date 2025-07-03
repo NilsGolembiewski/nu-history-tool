@@ -1,0 +1,24 @@
+[project]
+name = "nu-history-tool"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Nils Golembiewski",email = "nilsgolembiewski@techonomy.nl"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "polars (>=1.31.0,<2.0.0)",
+    "typer (>=0.16.0,<0.17.0)",
+    "rich",
+    "duckdb",
+    "python-dateutil (>=2.9.0.post0,<3.0.0)"
+]
+
+
+[project.scripts]
+nu-history = "nu_history_tool.cli:app"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
