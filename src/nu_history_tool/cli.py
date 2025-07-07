@@ -112,6 +112,7 @@ def main(
     # Select and rename columns for output
     output_df = df.select([
         pl.col("command"),
+        pl.col("cwd"),
         pl.col("start_timestamp").alias("start_time")
     ])
 
@@ -119,6 +120,7 @@ def main(
         console = Console()
         table = Table(show_header=True, header_style="bold magenta")
         table.add_column("Command")
+        table.add_column("CWD")
         table.add_column("Start Time")
 
         for row in output_df.iter_rows(named=True):
@@ -132,7 +134,7 @@ def main(
                 start_time_str = str(start_time_local)
             else:
                 start_time_str = str(start_time)
-            table.add_row(row["command"], start_time_str)
+            table.add_row(row["command"], row["cwd"], start_time_str)
 
         console.print(table)
     elif output_format == "json":
